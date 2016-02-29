@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<widget id="io.cordova.hellocordova" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="io.cordova.serbanapp" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>Serban's App</name>
   <description>
         This is my app for Windows Platform.
@@ -7,8 +7,9 @@
   <author email="serbanghita@gmail.com" href="http://serban.ghita.org">
         Serban Ghita
     </author>
-  <content src="index.html" />
   <plugin name="cordova-plugin-whitelist" spec="1" />
+  <plugin name="cordova-plugin-geolocation" spec="2" />
+  <content src="index.html" />
   <access origin="*" />
   <allow-intent href="http://*/*" />
   <allow-intent href="https://*/*" />
@@ -16,12 +17,5 @@
   <allow-intent href="sms:*" />
   <allow-intent href="mailto:*" />
   <allow-intent href="geo:*" />
-  <platform name="android">
-    <allow-intent href="market:*" />
-  </platform>
-  <platform name="ios">
-    <allow-intent href="itms:*" />
-    <allow-intent href="itms-apps:*" />
-  </platform>
   <preference name="Orientation" value="portrait" />
 </widget>
