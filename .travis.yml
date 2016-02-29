@@ -1,0 +1,8 @@
+language: objective-c
+
+install:
+  - npm install -g cordova
+
+script:
+  - cordova platform add windows8
+  - cordova build windows8
