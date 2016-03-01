@@ -1,2 +1,7 @@
-/.vs/config
-/.vs/myCordovaWindowsApp/v14
+/.vs
+/.idea
+bin/
+bld/
+node_modules/
+platforms/
+plugins/
