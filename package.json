@@ -1,0 +1,11 @@
+{
+  "name": "my-cordova-windows-app",
+  "version": "0.0.1",
+  "dependencies": { },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-typescript": "^2.11.0",
+    "taco-team-build": "^0.2.1",
+    "event-stream": "^3.3.2"
+  }
+}
