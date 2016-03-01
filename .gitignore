@@ -7,3 +7,4 @@ platforms/
 plugins/
 src/*.js
 src/*.js.map
+/myCordovaWindowsApp.jsproj.user
