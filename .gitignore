@@ -5,3 +5,5 @@ bld/
 node_modules/
 platforms/
 plugins/
+src/*.js
+src/*.js.map
