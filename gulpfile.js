@@ -1,82 +1,90 @@
-"use strict";
-
-/*
-  Copyright (c) Microsoft. All rights reserved.  
-  Licensed under the MIT license. See LICENSE file in the project root for full license information.
-*/
-var gulp = require("gulp"),
-    fs = require("fs"),
-    ts = require("gulp-typescript"),
-    es = require('event-stream'),
-    cordovaBuild = require("taco-team-build");
-
-// Setup platforms to build that are supported on current hardware
-var winPlatforms = ["windows"];
-var platformsToBuild = winPlatforms;
+var gulp = require("gulp");
+var rename = require('gulp-rename');
+var fs = require("fs");
+var ts = require("gulp-typescript");
+var tsc = require('gulp-tsc');
+var tslint = require('gulp-tslint');
+var es = require('event-stream');
+var cordovaBuild = require("taco-team-build");
+var browserify = require('browserify');
+var source = require('vinyl-source-stream');
+var runSequence = require('run-sequence');
 
 // Build config to use for build - Use Pascal case to match paths set by VS
 var buildConfig = "Release";
 
 // Arguments for build by platform. Warning: Omit the extra "--" when referencing platform
 // specific options (Ex:"-- --gradleArg" is "--gradleArg").
-var buildArgs = {
-    windows: ["--" + buildConfig.toLocaleLowerCase(), "--device"]
-};
+var buildArgs = ["--" + buildConfig.toLocaleLowerCase(), "--device"];
 
-// Paths used by build
 var paths = {
-   tsconfig: "src/tsconfig.json",
-   ts: "src/*.ts",
-   appx: "./platforms/windows/AppPackages/**/*",
-   binAppx: "./bin/Windows/" + buildConfig
+    typescript: {
+        tsconfig: "tsconfig.json",
+        src: ['src/*.ts'],
+        dest: 'www/js-tmp/'
+    },
+    javascript: {
+        src: 'www/js-tmp/*.js',
+        dest: 'www/js-tmp/app.js',
+        min: 'www/js-tmp/app.min.js'
+    },
+    appx: "./platforms/windows/AppPackages/**/*",
+    binAppx: "./bin/Windows/" + buildConfig
 };
 
-// Set the default to the build task
-gulp.task("default", ["build"]);
+/**
+ * TypeScript tasks.
+ */
 
-// Executes taks specified in winPlatforms, linuxPlatforms, or osxPlatforms based on
-// the hardware Gulp is running on which are then placed in platformsToBuild
-gulp.task("build",  ["scripts"], function() {
-    return cordovaBuild.buildProject(platformsToBuild, buildArgs)
-        .then(function() {    
-            // ** NOTE: Package not required in recent versions of Cordova
-            return cordovaBuild.packageProject(platformsToBuild)
-                .then(function() {             
-                    return es.concat(
-                            gulp.src(paths.appx).pipe(gulp.dest(paths.binAppx)));            
-                });
-        });
+gulp.task('ts:compile', function() {
+    return gulp
+        .src(paths.typescript.src)
+        .pipe(tsc({
+            module: 'commonjs',
+            emitError: false
+        }))
+        .pipe(gulp.dest(paths.typescript.dest));
+});
+
+gulp.task('ts:lint', function() {
+    return gulp.src(paths.typescript.src)
+        .pipe(tslint())
+        .pipe(tslint.report('prose', {
+            emitError: false
+        }));
+});
+
+/**
+ * JavaScript tasks.
+ */
+
+gulp.task('js', function() {
+    browserify({debug:true})
+        .add('./www/js-tmp/index.js')
+        .bundle()
+        .pipe(source('./app.js'))
+        //.pipe(streamify(uglify()))
+        //.pipe(rename('app.js'))
+        .pipe(gulp.dest('./www/js/'));
 });
 
 // Build Windows, copy the results back to bin folder
-gulp.task("build-win", ["scripts"], function() {
+gulp.task("build-win", function() {
     return cordovaBuild.buildProject("windows", buildArgs)
         .then(function() {
-            return gulp.src(paths.appx).pipe(gulp.dest(paths.binAppx));            
+            return gulp.src(paths.appx).pipe(gulp.dest(paths.binAppx));
         });
 });
 
-// Typescript compile - Can add other things like minification here
-gulp.task("scripts", function () {
-    // Compile TypeScript code - This sample is designed to compile anything under the "src" folder using settings
-    // in tsconfig.json if present or this gulpfile if not.  Adjust as appropriate for your use case.
-    if (fs.existsSync(paths.tsconfig)) {
-        // Use settings from src/tsconfig.json
-        gulp.src(paths.ts)
-            .pipe(ts(ts.createProject(paths.tsconfig)))
-            .pipe(gulp.dest("."));
-    } else {
-        // Otherwise use these default settings
-         gulp.src(paths.ts)
-            .pipe(ts({
-                noImplicitAny: false,
-                noEmitOnError: true,
-                removeComments: false,
-                sourceMap: true,
-                module: "es2015",
-                outFile: "app.js",
-            target: "es5"
-            }))
-            .pipe(gulp.dest("www/js"));        
-    }
+gulp.task('build', function(done) {
+    runSequence('ts:compile', 'js', 'build-win', function() {
+        console.log('App built.');
+        done();
+    });
 });
+
+
+/**
+ * Run everything in order.
+ */
+gulp.task("default", ["build"]);
