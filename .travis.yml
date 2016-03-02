@@ -6,6 +6,6 @@ before_script:
   - npm install
   
 script: 
-  - gulp ts:compilr
+  - gulp ts:compile
   - gulp js
   - xbuild myCordovaWindowsApp.jsproj
