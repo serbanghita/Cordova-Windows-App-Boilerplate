@@ -1,11 +1,19 @@
 {
   "name": "my-cordova-windows-app",
   "version": "0.0.1",
-  "dependencies": { },
+  "dependencies": {},
   "devDependencies": {
+    "browserify": "^13.0.0",
+    "event-stream": "^3.3.2",
     "gulp": "^3.9.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-tsc": "^1.1.4",
+    "gulp-tslint": "^4.3.3",
     "gulp-typescript": "^2.11.0",
+    "run-sequence": "^1.1.5",
     "taco-team-build": "^0.2.1",
-    "event-stream": "^3.3.2"
+    "tslint": "^3.5.0",
+    "typescript": "^1.8.7",
+    "vinyl-source-stream": "^1.1.0"
   }
 }
