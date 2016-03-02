@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "noImplicitAny": true,
+    "removeComments": true,
+    "target": "es5",
+    "outFile": "compile/js/theGame.js",
+    "sourceMap": false
+  },
+  "files": [
+    "src/index.ts",
+    "typings/es6-promise/es6-promise.d.ts"
+  ]
+}
