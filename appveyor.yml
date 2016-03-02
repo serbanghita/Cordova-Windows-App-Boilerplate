@@ -1,7 +1,7 @@
 version: 1.0.{build}
 os: Visual Studio 2015
 configuration: Release
-platform: x86
+platform: Windows-x86
 build:
   project: myCordovaWindowsApp.sln
   verbosity: minimal
