@@ -1,8 +1,8 @@
 language: objective-c
 
-install:
+before_script:
   - npm install -g cordova
+  - npm install -g gulp
   - npm install
-
-script:
-  - gulp
+  
+script: gulp
