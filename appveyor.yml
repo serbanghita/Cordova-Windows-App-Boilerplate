@@ -1,5 +1,7 @@
 version: 1.0.{build}
 os: Visual Studio 2015
+environment:
+  DebuggerFlavor: WindowsLocal
 configuration: Release
 platform: Windows-x86
 build:
