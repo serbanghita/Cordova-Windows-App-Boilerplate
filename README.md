@@ -1,6 +1,7 @@
 # Generic Cordova App for Windows
 
 [![Build Status](https://travis-ci.org/serbanghita/myCordovaWindowsApp.svg?branch=master)](https://travis-ci.org/serbanghita/myCordovaWindowsApp)
+[![Build status](https://ci.appveyor.com/api/projects/status/oc1shclrsd9k9fk1?svg=true)](https://ci.appveyor.com/project/serbanghita/mycordovawindowsapp)
 
 #### Configuration rules
 
