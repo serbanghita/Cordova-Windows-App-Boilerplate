@@ -1,5 +1,3 @@
-﻿import {MyController} from "./MyController";
-import {MyView} from "./MyView";
+﻿import {App} from "./App";
 
-var c = new MyController(new MyView());
-c.startAction();
+var myApp = new App();
