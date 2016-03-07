@@ -1,11 +1,11 @@
-﻿interface GeolocationPosition {
+﻿interface IGeolocationPosition {
     coords: {},
-    timestamp: number
+    timestamp: number;
 }
 
-interface GeolocationError {
+interface IGeolocationError {
     code: number,
-    message: string
+    message: string;
 }
 
 export class App {
@@ -22,11 +22,11 @@ export class App {
         console.log(navigator);
         console.log(navigator.geolocation);
 
-        var onSuccess = function(position: GeolocationPosition) {
+        var onSuccess = (position: IGeolocationPosition) => {
             console.log(position.coords);
         };
 
-        var onError = function(error: GeolocationError) {
+        var onError = (error: IGeolocationError) => {
             console.log(error);
         };
 
