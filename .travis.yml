@@ -1,4 +1,6 @@
 language: node_js
+node_js:
+  - "4"
 
 before_script:
   # from https://github.com/schambers/fluentmigrator/blob/master/.travis.yml
@@ -8,7 +10,7 @@ before_script:
   - npm install -g gulp
   - npm install
   
-script: 
+script:
   - gulp ts:compile
   - gulp js
   - xbuild myCordovaWindowsApp.jsproj

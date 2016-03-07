@@ -7,8 +7,11 @@
   <author email="serbanghita@gmail.com" href="http://serban.ghita.org">
         Serban Ghita
     </author>
+  <plugin name="cordova-plugin-vs-taco-support" version="0.2.0" />
   <plugin name="cordova-plugin-whitelist" spec="1" />
   <plugin name="cordova-plugin-geolocation" spec="2" />
+  <plugin name="cordova-plugin-media-capture" version="1.2.1-dev" src="https://git.corp.adobe.com/dps/viewer-cordova-plugin-media-capture.git" />
+  <plugin name="cordova-plugin-file" version="4.1.2-dev" src="https://github.com/apache/cordova-plugin-file.git" />
   <content src="index.html" />
   <access origin="*" />
   <allow-intent href="http://*/*" />
@@ -18,4 +21,9 @@
   <allow-intent href="mailto:*" />
   <allow-intent href="geo:*" />
   <preference name="Orientation" value="portrait" />
+  <preference name="Fullscreen" value="True" />
+  <preference name="KeepRunning" value="True" />
+  <preference name="ShowTitle" value="True" />
+  <preference name="InAppBrowserStorageEnabled" value="True" />
+  <preference name="SuppressesIncrementalRendering" value="True" />
 </widget>
