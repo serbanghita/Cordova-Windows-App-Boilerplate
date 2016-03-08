@@ -1,29 +1,28 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version='1.0' encoding='utf-8'?>
 <widget id="io.cordova.serbanapp" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-  <name>Serban's App</name>
-  <description>
+    <name>Serban's App</name>
+    <description>
         This is my app for Windows Platform.
     </description>
-  <author email="serbanghita@gmail.com" href="http://serban.ghita.org">
+    <author email="serbanghita@gmail.com" href="http://serban.ghita.org">
         Serban Ghita
     </author>
-  <plugin name="cordova-plugin-vs-taco-support" version="0.2.0" />
-  <plugin name="cordova-plugin-whitelist" spec="1" />
-  <plugin name="cordova-plugin-geolocation" spec="2" />
-  <plugin name="cordova-plugin-media-capture" version="1.2.1-dev" src="https://git.corp.adobe.com/dps/viewer-cordova-plugin-media-capture.git" />
-  <plugin name="cordova-plugin-file" version="4.1.2-dev" src="https://github.com/apache/cordova-plugin-file.git" />
-  <content src="index.html" />
-  <access origin="*" />
-  <allow-intent href="http://*/*" />
-  <allow-intent href="https://*/*" />
-  <allow-intent href="tel:*" />
-  <allow-intent href="sms:*" />
-  <allow-intent href="mailto:*" />
-  <allow-intent href="geo:*" />
-  <preference name="Orientation" value="portrait" />
-  <preference name="Fullscreen" value="True" />
-  <preference name="KeepRunning" value="True" />
-  <preference name="ShowTitle" value="True" />
-  <preference name="InAppBrowserStorageEnabled" value="True" />
-  <preference name="SuppressesIncrementalRendering" value="True" />
+    <content src="index.html" />
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <preference name="Orientation" value="portrait" />
+    <preference name="Fullscreen" value="True" />
+    <preference name="KeepRunning" value="True" />
+    <preference name="ShowTitle" value="True" />
+    <preference name="InAppBrowserStorageEnabled" value="True" />
+    <preference name="SuppressesIncrementalRendering" value="True" />
+    <plugin name="cordova-plugin-vs-taco-support" version="0.2.0" />
+    <plugin name="cordova-plugin-whitelist" spec="1" />
+    <plugin name="cordova-plugin-geolocation" spec="~2.1.0" />
+    <plugin name="cordova-plugin-media-capture" spec="~1.2.0" />
 </widget>
