@@ -8,6 +8,7 @@ before_script:
   - sudo apt-get install -y mono-devel mono-gmcs
   - npm install -g cordova
   - npm install -g gulp
+  - npm install -g typings
   - npm install
   
 script:
