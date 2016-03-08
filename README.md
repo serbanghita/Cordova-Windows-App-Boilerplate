@@ -10,6 +10,13 @@
 * See `cordova-windows` [2] project for additional inspiration.
 * Do not commit `plugins/fetch.json` [3] in the project.
 
+#### Plugins installed
+
+```
+cordova plugin add cordova-plugin-geolocation
+cordova plugin add cordova-plugin-media-capture
+```
+
 #### Typings for Cordova plugins
 
 ```
