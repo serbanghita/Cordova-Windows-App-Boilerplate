@@ -13,8 +13,8 @@
 #### Plugins installed
 
 ```
-cordova plugin add cordova-plugin-geolocation
-cordova plugin add cordova-plugin-media-capture
+cordova plugin add cordova-plugin-geolocation --save
+cordova plugin add cordova-plugin-media-capture --save
 ```
 
 #### Typings for Cordova plugins
