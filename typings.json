@@ -1,0 +1,8 @@
+{
+  "ambientDependencies": {
+    "Device": "github:DefinitelyTyped/DefinitelyTyped/cordova/plugins/Device.d.ts#ac7f83bdcf1dfd70e70acf7a87cf8e83719dacd6",
+    "DeviceOrientation": "github:DefinitelyTyped/DefinitelyTyped/cordova/plugins/DeviceOrientation.d.ts#ac7f83bdcf1dfd70e70acf7a87cf8e83719dacd6",
+    "MediaCapture": "github:DefinitelyTyped/DefinitelyTyped/cordova/plugins/MediaCapture.d.ts#ac7f83bdcf1dfd70e70acf7a87cf8e83719dacd6",
+    "cordova": "github:DefinitelyTyped/DefinitelyTyped/cordova/cordova.d.ts#ac7f83bdcf1dfd70e70acf7a87cf8e83719dacd6"
+  }
+}
