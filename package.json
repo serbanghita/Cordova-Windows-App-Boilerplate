@@ -17,8 +17,8 @@
     "vinyl-source-stream": "^1.1.0"
   },
   "scripts": {
-    "preinstall": "npm install -g cordova && npm install -g gulp && npm install -g typings",
-    "build-js": "typings install && gulp build-js",
+    "preinstall": "npm install -g cordova && npm install -g gulp && npm install -g typings && typings install",
+    "build-js": "gulp build-js",
     "build": "gulp build"
   }
 }
