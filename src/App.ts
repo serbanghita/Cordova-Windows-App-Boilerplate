@@ -43,8 +43,4 @@
 
         navigator.device.capture.captureImage(onSuccess, onError, { limit: 2 });
     }
-
-    public getArticle() {
-        
-    }
 }

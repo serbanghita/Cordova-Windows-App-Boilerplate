@@ -1,14 +1,14 @@
 var gulp = require("gulp");
 var rename = require('gulp-rename');
 var fs = require("fs");
-var ts = require("gulp-typescript");
-var tsc = require('gulp-tsc');
+var ts = require('gulp-typescript');
 var tslint = require('gulp-tslint');
 var es = require('event-stream');
 var cordovaBuild = require("taco-team-build");
 var browserify = require('browserify');
 var source = require('vinyl-source-stream');
 var runSequence = require('run-sequence');
+var rimraf = require('rimraf');
 
 // Build config to use for build - Use Pascal case to match paths set by VS
 var buildConfig = "Release";
@@ -20,8 +20,8 @@ var buildArgs = ["--" + buildConfig.toLocaleLowerCase(), "--device"];
 var paths = {
     typescript: {
         tsconfig: "tsconfig.json",
-        src: ['src/*.ts'],
-        dest: 'www/js-tmp/'
+        src: ['src/**.ts'],
+        dest: './www/tmp/'
     },
     javascript: {
         src: 'www/js-tmp/*.js',
@@ -37,13 +37,11 @@ var paths = {
  */
 
 gulp.task('ts:compile', function() {
-    return gulp
-        .src(paths.typescript.src)
-        .pipe(tsc({
-            module: 'commonjs',
-            emitError: false
-        }))
-        .pipe(gulp.dest(paths.typescript.dest));
+    var tsProject = ts.createProject('tsconfig.json');
+    var tsResult = tsProject.src(paths.typescript.src) // instead of gulp.src(...)
+        .pipe(ts(tsProject));
+    return tsResult.js.pipe(gulp.dest(paths.typescript.dest));
+
 });
 
 gulp.task('ts:lint', function() {
@@ -58,14 +56,18 @@ gulp.task('ts:lint', function() {
  * JavaScript tasks.
  */
 
-gulp.task('js', function() {
-    browserify({debug:true})
-        .add('./www/js-tmp/index.js')
+gulp.task('js:browserify', function() {
+    return browserify({debug:true})
+        .add('./www/tmp/index.js')
         .bundle()
         .pipe(source('./app.js'))
         //.pipe(streamify(uglify()))
         //.pipe(rename('app.js'))
         .pipe(gulp.dest('./www/js/'));
+});
+
+gulp.task('js:cleanup', function (cb) {
+    return rimraf('./www/tmp', cb);
 });
 
 // Build Windows, copy the results back to bin folder
@@ -76,8 +78,15 @@ gulp.task("build-win", function() {
         });
 });
 
-gulp.task('build', function(done) {
-    runSequence('ts:compile', 'js', 'build-win', function() {
+gulp.task('build-js', function(done) {
+    runSequence('ts:compile', 'js:browserify', 'js:cleanup', function() {
+        console.log('JavaScript built.');
+        done();
+    });
+});
+
+gulp.task('build-app', function(done) {
+    runSequence('build-js', 'build-win', function() {
         console.log('App built.');
         done();
     });
@@ -87,4 +96,4 @@ gulp.task('build', function(done) {
 /**
  * Run everything in order.
  */
-gulp.task("default", ["build"]);
+gulp.task('default', ['build-app']);

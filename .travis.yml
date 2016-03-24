@@ -4,14 +4,10 @@ node_js:
 
 before_script:
   # from https://github.com/schambers/fluentmigrator/blob/master/.travis.yml
-  - sudo apt-get update -qq
-  - sudo apt-get install -y mono-devel mono-gmcs
-  - npm install -g cordova
-  - npm install -g gulp
-  - npm install -g typings
-  - npm install
+  # sudo apt-get update -qq
+  # - sudo apt-get install -y mono-devel mono-gmcs
+  #- npm install
   
 script:
-  - gulp ts:compile
-  - gulp js
-  - xbuild myCordovaWindowsApp.jsproj
+  #- xbuild myCordovaWindowsApp.jsproj
+  - npm install

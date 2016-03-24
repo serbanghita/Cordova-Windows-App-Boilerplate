@@ -1,11 +1,14 @@
 {
   "compilerOptions": {
     "module": "commonjs",
+    "listFiles": true,
     "noImplicitAny": true,
     "removeComments": true,
     "target": "es5",
-    "outFile": "www/js-tmp/index.js",
-    "sourceMap": false
+    "outDir": "www/tmp/",
+    "rootDir": "src/",
+    "sourceMap": false,
+    "diagnostics": true
   },
   "files": [
     "src/index.ts",

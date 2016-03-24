@@ -7,9 +7,9 @@
     "event-stream": "^3.3.2",
     "gulp": "^3.9.1",
     "gulp-rename": "^1.2.2",
-    "gulp-tsc": "^1.1.4",
     "gulp-tslint": "^4.3.3",
-    "gulp-typescript": "^2.11.0",
+    "gulp-typescript": "^2.12.1",
+    "rimraf": "^2.5.2",
     "run-sequence": "^1.1.5",
     "taco-team-build": "^0.2.1",
     "tslint": "^3.5.0",
@@ -17,7 +17,8 @@
     "vinyl-source-stream": "^1.1.0"
   },
   "scripts": {
-    "build": "rm -rf dist && tsc",
-    "prepublish": "typings install && npm run build"
+    "preinstall": "npm install -g cordova && npm install -g gulp && npm install -g typings",
+    "build-js": "typings install && gulp build-js",
+    "build": "gulp build"
   }
 }
